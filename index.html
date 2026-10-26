@@ -6,17 +6,18 @@
   <title>Burginos · Bad decisions taste better</title>
   <meta name="description" content="Burginos, Kanpur. Smash burgers, 100% Arabica coffee and an F1 attitude. Not just food, a whole cult." />
   <meta name="theme-color" content="#C2080E" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Damion&family=Open+Sans:wght@400;700&family=Racing+Sans+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;700&family=Racing+Sans+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- HERO -->
   <section class="hero" id="top">
     <header class="nav">
-      <a href="index.html" class="logo" aria-label="Burginos home">Burg<span class="i-dot">i</span>nos</a>
+      <a href="index.html" class="logo" aria-label="Burginos home"><img src="assets/Asset_14.png" width="2987" height="828" alt="" /></a>
       <nav class="nav-links" id="navLinks">
         <a href="#why" class="nav-plain">Why us</a>
         <a href="#story" class="nav-plain">Our story</a>
@@ -25,18 +26,29 @@
       <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
     </header>
 
-    <div class="halftone halftone-left" aria-hidden="true"></div>
-    <div class="halftone halftone-right" aria-hidden="true"></div>
-
-    <div class="hero-center">
-      <!-- Headline letterforms are Impact outlines (Impact can't be served as a web font);
-           the real text is kept for screen readers and search. -->
-      <h1 class="hero-title">
-        <span class="sr-only">Bad decisions taste better.</span>
+    <!-- party photo with the campaign overlays (flag, tagline, sticker) -->
+    <div class="hero-photo">
+      <!-- hero-party.webp is a 216KB export of the 2.5MB PNG, kept as the fallback -->
+      <picture class="hero-bg">
+        <source srcset="assets/hero-party.webp" type="image/webp" />
+        <img src="assets/299c9f90-50c6-42b3-8207-0db43574d793.png" width="1672" height="941" alt="A crowd partying with Burginos burgers and cups" fetchpriority="high" />
+      </picture>
+      <h1 class="sr-only">Burginos: bad decisions taste better.</h1>
+      <svg class="hero-flag" viewBox="0 0 470 235" aria-hidden="true"><path d="M50 0h60l-50 55h-60zM170 0h60l-50 55h-60zM290 0h60l-50 55h-60zM410 0h60l-50 55h-60zM50 60h60l-50 55h-60zM170 60h60l-50 55h-60zM290 60h60l-50 55h-60zM410 60h60l-50 55h-60zM50 120h60l-50 55h-60zM170 120h60l-50 55h-60zM290 120h60l-50 55h-60zM50 180h60l-50 55h-60zM170 180h60l-50 55h-60zM290 180h60l-50 55h-60z"/></svg>
+      <p class="hero-tagline">There is always a good<br />place to <em>hang out</em></p>
+      <!-- sticker letterforms are Impact outlines (Impact can't be served as a web font) -->
+      <div class="hero-sticker" role="img" aria-label="Bad decisions taste better.">
         <svg class="t1" viewBox="84 -1619 11760.0 1643" aria-hidden="true"><path d="M84 -1619H504Q703 -1619 805.5 -1588.0Q908 -1557 971.0 -1462.5Q1034 -1368 1034 -1158Q1034 -1016 989.5 -960.0Q945 -904 814 -874Q960 -841 1012.0 -764.5Q1064 -688 1064 -530V-380Q1064 -216 1026.5 -137.0Q989 -58 907.0 -29.0Q825 0 571 0H84ZM505 -1342V-982Q532 -983 547 -983Q609 -983 626.0 -1013.5Q643 -1044 643 -1188Q643 -1264 629.0 -1294.5Q615 -1325 592.5 -1333.0Q570 -1341 505 -1342ZM505 -730V-277Q594 -280 618.5 -305.0Q643 -330 643 -428V-579Q643 -683 621.0 -705.0Q599 -727 505 -730ZM1564 -813H1185V-902Q1185 -1056 1220.5 -1139.5Q1256 -1223 1363.0 -1287.0Q1470 -1351 1641 -1351Q1846 -1351 1950.0 -1278.5Q2054 -1206 2075.0 -1100.5Q2096 -995 2096 -666V0H1703V-118Q1666 -47 1607.5 -11.5Q1549 24 1468 24Q1362 24 1273.5 -35.5Q1185 -95 1185 -296V-405Q1185 -554 1232.0 -608.0Q1279 -662 1465 -734Q1664 -812 1678.0 -839.0Q1692 -866 1692 -949Q1692 -1053 1676.5 -1084.5Q1661 -1116 1625 -1116Q1584 -1116 1574.0 -1089.5Q1564 -1063 1564 -952ZM1692 -631Q1595 -560 1579.5 -512.0Q1564 -464 1564 -374Q1564 -271 1577.5 -241.0Q1591 -211 1631 -211Q1669 -211 1680.5 -234.5Q1692 -258 1692 -358ZM3154 -1619V0H2750V-96Q2692 -36 2628.0 -6.0Q2564 24 2494 24Q2400 24 2331.0 -25.5Q2262 -75 2242.5 -140.0Q2223 -205 2223 -352V-973Q2223 -1126 2242.5 -1190.0Q2262 -1254 2332.0 -1302.5Q2402 -1351 2499 -1351Q2574 -1351 2636.5 -1324.0Q2699 -1297 2750 -1243V-1619ZM2750 -993Q2750 -1066 2737.5 -1091.0Q2725 -1116 2688 -1116Q2652 -1116 2639.5 -1093.5Q2627 -1071 2627 -993V-343Q2627 -262 2639.0 -236.5Q2651 -211 2685 -211Q2724 -211 2737.0 -239.5Q2750 -268 2750 -379ZM4579.0 -1619V0H4175.0V-96Q4117.0 -36 4053.0 -6.0Q3989.0 24 3919.0 24Q3825.0 24 3756.0 -25.5Q3687.0 -75 3667.5 -140.0Q3648.0 -205 3648.0 -352V-973Q3648.0 -1126 3667.5 -1190.0Q3687.0 -1254 3757.0 -1302.5Q3827.0 -1351 3924.0 -1351Q3999.0 -1351 4061.5 -1324.0Q4124.0 -1297 4175.0 -1243V-1619ZM4175.0 -993Q4175.0 -1066 4162.5 -1091.0Q4150.0 -1116 4113.0 -1116Q4077.0 -1116 4064.5 -1093.5Q4052.0 -1071 4052.0 -993V-343Q4052.0 -262 4064.0 -236.5Q4076.0 -211 4110.0 -211Q4149.0 -211 4162.0 -239.5Q4175.0 -268 4175.0 -379ZM5639.0 -640H5116.0V-353Q5116.0 -263 5129.0 -237.0Q5142.0 -211 5179.0 -211Q5225.0 -211 5240.5 -245.5Q5256.0 -280 5256.0 -379V-554H5639.0V-456Q5639.0 -333 5623.5 -267.0Q5608.0 -201 5551.0 -126.0Q5494.0 -51 5406.5 -13.5Q5319.0 24 5187.0 24Q5059.0 24 4961.0 -13.0Q4863.0 -50 4808.5 -114.5Q4754.0 -179 4733.0 -256.5Q4712.0 -334 4712.0 -482V-869Q4712.0 -1043 4759.0 -1143.5Q4806.0 -1244 4913.0 -1297.5Q5020.0 -1351 5159.0 -1351Q5329.0 -1351 5439.5 -1286.5Q5550.0 -1222 5594.5 -1115.5Q5639.0 -1009 5639.0 -816ZM5234.0 -856V-953Q5234.0 -1056 5223.0 -1086.0Q5212.0 -1116 5178.0 -1116Q5136.0 -1116 5126.0 -1090.5Q5116.0 -1065 5116.0 -953V-856ZM6664.0 -826H6283.0V-979Q6283.0 -1059 6270.0 -1087.5Q6257.0 -1116 6222.0 -1116Q6187.0 -1116 6175.0 -1091.0Q6163.0 -1066 6163.0 -979V-353Q6163.0 -282 6181.0 -246.5Q6199.0 -211 6234.0 -211Q6275.0 -211 6289.5 -248.0Q6304.0 -285 6304.0 -388V-546H6664.0Q6663.0 -387 6652.5 -307.5Q6642.0 -228 6585.5 -144.5Q6529.0 -61 6438.0 -18.5Q6347.0 24 6213.0 24Q6042.0 24 5942.0 -34.5Q5842.0 -93 5800.5 -198.5Q5759.0 -304 5759.0 -498V-875Q5759.0 -1044 5793.0 -1130.0Q5827.0 -1216 5938.0 -1283.5Q6049.0 -1351 6208.0 -1351Q6366.0 -1351 6478.0 -1284.0Q6590.0 -1217 6627.0 -1115.0Q6664.0 -1013 6664.0 -826ZM7200.0 -1619V-1408H6784.0V-1619ZM7200.0 -1327V0H6784.0V-1327ZM8170.0 -903H7812.0V-975Q7812.0 -1067 7801.5 -1091.5Q7791.0 -1116 7749.0 -1116Q7715.0 -1116 7698.0 -1093.5Q7681.0 -1071 7681.0 -1026Q7681.0 -965 7689.5 -936.5Q7698.0 -908 7740.5 -874.0Q7783.0 -840 7915.0 -775Q8091.0 -689 8146.0 -613Q8201.0 -537 8201.0 -392Q8201.0 -230 8159.0 -147.5Q8117.0 -65 8018.5 -20.5Q7920.0 24 7781.0 24Q7627.0 24 7517.5 -24.0Q7408.0 -72 7367.0 -154.0Q7326.0 -236 7326.0 -402V-466H7684.0V-382Q7684.0 -275 7697.5 -243.0Q7711.0 -211 7751.0 -211Q7794.0 -211 7811.0 -232.5Q7828.0 -254 7828.0 -323Q7828.0 -418 7806.0 -442Q7783.0 -466 7571.0 -584Q7393.0 -684 7354.0 -765.5Q7315.0 -847 7315.0 -959Q7315.0 -1118 7357.0 -1193.5Q7399.0 -1269 7499.5 -1310.0Q7600.0 -1351 7733.0 -1351Q7865.0 -1351 7957.5 -1317.5Q8050.0 -1284 8099.5 -1229.0Q8149.0 -1174 8159.5 -1127.0Q8170.0 -1080 8170.0 -980ZM8725.0 -1619V-1408H8309.0V-1619ZM8725.0 -1327V0H8309.0V-1327ZM9784.0 -861V-536Q9784.0 -357 9766.0 -273.5Q9748.0 -190 9689.0 -117.5Q9630.0 -45 9537.5 -10.5Q9445.0 24 9325.0 24Q9191.0 24 9098.0 -5.5Q9005.0 -35 8953.5 -94.5Q8902.0 -154 8880.0 -238.5Q8858.0 -323 8858.0 -492V-832Q8858.0 -1017 8898.0 -1121.0Q8938.0 -1225 9042.0 -1288.0Q9146.0 -1351 9308.0 -1351Q9444.0 -1351 9541.5 -1310.5Q9639.0 -1270 9692.0 -1205.0Q9745.0 -1140 9764.5 -1071.0Q9784.0 -1002 9784.0 -861ZM9380.0 -961Q9380.0 -1063 9369.0 -1089.5Q9358.0 -1116 9322.0 -1116Q9286.0 -1116 9274.0 -1089.5Q9262.0 -1063 9262.0 -961V-362Q9262.0 -268 9274.0 -239.5Q9286.0 -211 9321.0 -211Q9357.0 -211 9368.5 -237.0Q9380.0 -263 9380.0 -349ZM10328.0 -1327 10321.0 -1205Q10365.0 -1278 10428.5 -1314.5Q10492.0 -1351 10575.0 -1351Q10679.0 -1351 10745.0 -1302.0Q10811.0 -1253 10830.0 -1178.5Q10849.0 -1104 10849.0 -930V0H10445.0V-919Q10445.0 -1056 10436.0 -1086.0Q10427.0 -1116 10386.0 -1116Q10343.0 -1116 10332.0 -1081.5Q10321.0 -1047 10321.0 -897V0H9917.0V-1327ZM11813.0 -903H11455.0V-975Q11455.0 -1067 11444.5 -1091.5Q11434.0 -1116 11392.0 -1116Q11358.0 -1116 11341.0 -1093.5Q11324.0 -1071 11324.0 -1026Q11324.0 -965 11332.5 -936.5Q11341.0 -908 11383.5 -874.0Q11426.0 -840 11558.0 -775Q11734.0 -689 11789.0 -613Q11844.0 -537 11844.0 -392Q11844.0 -230 11802.0 -147.5Q11760.0 -65 11661.5 -20.5Q11563.0 24 11424.0 24Q11270.0 24 11160.5 -24.0Q11051.0 -72 11010.0 -154.0Q10969.0 -236 10969.0 -402V-466H11327.0V-382Q11327.0 -275 11340.5 -243.0Q11354.0 -211 11394.0 -211Q11437.0 -211 11454.0 -232.5Q11471.0 -254 11471.0 -323Q11471.0 -418 11449.0 -442Q11426.0 -466 11214.0 -584Q11036.0 -684 10997.0 -765.5Q10958.0 -847 10958.0 -959Q10958.0 -1118 11000.0 -1193.5Q11042.0 -1269 11142.5 -1310.0Q11243.0 -1351 11376.0 -1351Q11508.0 -1351 11600.5 -1317.5Q11693.0 -1284 11742.5 -1229.0Q11792.0 -1174 11802.5 -1127.0Q11813.0 -1080 11813.0 -980Z"/></svg>
         <svg class="t2" viewBox="6 -1619 9983.0 1643" aria-hidden="true"><path d="M498 -1504V-1295H607V-1085H498V-375Q498 -244 511.5 -229.0Q525 -214 624 -214V0H461Q323 0 264.0 -11.5Q205 -23 160.0 -64.5Q115 -106 104.0 -159.5Q93 -213 93 -411V-1085H6V-1295H93V-1504ZM1057 -813H678V-902Q678 -1056 713.5 -1139.5Q749 -1223 856.0 -1287.0Q963 -1351 1134 -1351Q1339 -1351 1443.0 -1278.5Q1547 -1206 1568.0 -1100.5Q1589 -995 1589 -666V0H1196V-118Q1159 -47 1100.5 -11.5Q1042 24 961 24Q855 24 766.5 -35.5Q678 -95 678 -296V-405Q678 -554 725.0 -608.0Q772 -662 958 -734Q1157 -812 1171.0 -839.0Q1185 -866 1185 -949Q1185 -1053 1169.5 -1084.5Q1154 -1116 1118 -1116Q1077 -1116 1067.0 -1089.5Q1057 -1063 1057 -952ZM1185 -631Q1088 -560 1072.5 -512.0Q1057 -464 1057 -374Q1057 -271 1070.5 -241.0Q1084 -211 1124 -211Q1162 -211 1173.5 -234.5Q1185 -258 1185 -358ZM2553 -903H2195V-975Q2195 -1067 2184.5 -1091.5Q2174 -1116 2132 -1116Q2098 -1116 2081.0 -1093.5Q2064 -1071 2064 -1026Q2064 -965 2072.5 -936.5Q2081 -908 2123.5 -874.0Q2166 -840 2298 -775Q2474 -689 2529 -613Q2584 -537 2584 -392Q2584 -230 2542.0 -147.5Q2500 -65 2401.5 -20.5Q2303 24 2164 24Q2010 24 1900.5 -24.0Q1791 -72 1750.0 -154.0Q1709 -236 1709 -402V-466H2067V-382Q2067 -275 2080.5 -243.0Q2094 -211 2134 -211Q2177 -211 2194.0 -232.5Q2211 -254 2211 -323Q2211 -418 2189 -442Q2166 -466 1954 -584Q1776 -684 1737.0 -765.5Q1698 -847 1698 -959Q1698 -1118 1740.0 -1193.5Q1782 -1269 1882.5 -1310.0Q1983 -1351 2116 -1351Q2248 -1351 2340.5 -1317.5Q2433 -1284 2482.5 -1229.0Q2532 -1174 2542.5 -1127.0Q2553 -1080 2553 -980ZM3118 -1504V-1295H3227V-1085H3118V-375Q3118 -244 3131.5 -229.0Q3145 -214 3244 -214V0H3081Q2943 0 2884.0 -11.5Q2825 -23 2780.0 -64.5Q2735 -106 2724.0 -159.5Q2713 -213 2713 -411V-1085H2626V-1295H2713V-1504ZM4231 -640H3708V-353Q3708 -263 3721.0 -237.0Q3734 -211 3771 -211Q3817 -211 3832.5 -245.5Q3848 -280 3848 -379V-554H4231V-456Q4231 -333 4215.5 -267.0Q4200 -201 4143.0 -126.0Q4086 -51 3998.5 -13.5Q3911 24 3779 24Q3651 24 3553.0 -13.0Q3455 -50 3400.5 -114.5Q3346 -179 3325.0 -256.5Q3304 -334 3304 -482V-869Q3304 -1043 3351.0 -1143.5Q3398 -1244 3505.0 -1297.5Q3612 -1351 3751 -1351Q3921 -1351 4031.5 -1286.5Q4142 -1222 4186.5 -1115.5Q4231 -1009 4231 -816ZM3826 -856V-953Q3826 -1056 3815.0 -1086.0Q3804 -1116 3770 -1116Q3728 -1116 3718.0 -1090.5Q3708 -1065 3708 -953V-856ZM5128.0 -1619V-1236Q5178.0 -1294 5239.5 -1322.5Q5301.0 -1351 5373.0 -1351Q5456.0 -1351 5517.0 -1325.0Q5578.0 -1299 5610.0 -1252.0Q5642.0 -1205 5648.5 -1160.0Q5655.0 -1115 5655.0 -968V-370Q5655.0 -224 5635.5 -152.5Q5616.0 -81 5544.0 -28.5Q5472.0 24 5373.0 24Q5302.0 24 5240.5 -7.0Q5179.0 -38 5128.0 -100L5102.0 0H4724.0V-1619ZM5251.0 -950Q5251.0 -1053 5238.0 -1084.5Q5225.0 -1116 5187.0 -1116Q5150.0 -1116 5139.0 -1088.5Q5128.0 -1061 5128.0 -950V-378Q5128.0 -271 5140.5 -241.0Q5153.0 -211 5190.0 -211Q5228.0 -211 5239.5 -242.0Q5251.0 -273 5251.0 -391ZM6703.0 -640H6180.0V-353Q6180.0 -263 6193.0 -237.0Q6206.0 -211 6243.0 -211Q6289.0 -211 6304.5 -245.5Q6320.0 -280 6320.0 -379V-554H6703.0V-456Q6703.0 -333 6687.5 -267.0Q6672.0 -201 6615.0 -126.0Q6558.0 -51 6470.5 -13.5Q6383.0 24 6251.0 24Q6123.0 24 6025.0 -13.0Q5927.0 -50 5872.5 -114.5Q5818.0 -179 5797.0 -256.5Q5776.0 -334 5776.0 -482V-869Q5776.0 -1043 5823.0 -1143.5Q5870.0 -1244 5977.0 -1297.5Q6084.0 -1351 6223.0 -1351Q6393.0 -1351 6503.5 -1286.5Q6614.0 -1222 6658.5 -1115.5Q6703.0 -1009 6703.0 -816ZM6298.0 -856V-953Q6298.0 -1056 6287.0 -1086.0Q6276.0 -1116 6242.0 -1116Q6200.0 -1116 6190.0 -1090.5Q6180.0 -1065 6180.0 -953V-856ZM7261.0 -1504V-1295H7370.0V-1085H7261.0V-375Q7261.0 -244 7274.5 -229.0Q7288.0 -214 7387.0 -214V0H7224.0Q7086.0 0 7027.0 -11.5Q6968.0 -23 6923.0 -64.5Q6878.0 -106 6867.0 -159.5Q6856.0 -213 6856.0 -411V-1085H6769.0V-1295H6856.0V-1504ZM7885.0 -1504V-1295H7994.0V-1085H7885.0V-375Q7885.0 -244 7898.5 -229.0Q7912.0 -214 8011.0 -214V0H7848.0Q7710.0 0 7651.0 -11.5Q7592.0 -23 7547.0 -64.5Q7502.0 -106 7491.0 -159.5Q7480.0 -213 7480.0 -411V-1085H7393.0V-1295H7480.0V-1504ZM8998.0 -640H8475.0V-353Q8475.0 -263 8488.0 -237.0Q8501.0 -211 8538.0 -211Q8584.0 -211 8599.5 -245.5Q8615.0 -280 8615.0 -379V-554H8998.0V-456Q8998.0 -333 8982.5 -267.0Q8967.0 -201 8910.0 -126.0Q8853.0 -51 8765.5 -13.5Q8678.0 24 8546.0 24Q8418.0 24 8320.0 -13.0Q8222.0 -50 8167.5 -114.5Q8113.0 -179 8092.0 -256.5Q8071.0 -334 8071.0 -482V-869Q8071.0 -1043 8118.0 -1143.5Q8165.0 -1244 8272.0 -1297.5Q8379.0 -1351 8518.0 -1351Q8688.0 -1351 8798.5 -1286.5Q8909.0 -1222 8953.5 -1115.5Q8998.0 -1009 8998.0 -816ZM8593.0 -856V-953Q8593.0 -1056 8582.0 -1086.0Q8571.0 -1116 8537.0 -1116Q8495.0 -1116 8485.0 -1090.5Q8475.0 -1065 8475.0 -953V-856ZM9534.0 -1327 9518.0 -1153Q9606.0 -1340 9773.0 -1351V-884Q9662.0 -884 9610.0 -854.0Q9558.0 -824 9546.0 -770.5Q9534.0 -717 9534.0 -524V0H9130.0V-1327ZM9989.0 -330V0H9684.0V-330Z"/></svg>
-      </h1>
+      </div>
+    </div>
+  </section>
 
+  <!-- LIGHTS-OUT GAME (moved out of the hero; the scroll-progress car is separate and unaffected) -->
+  <section class="game" id="game" aria-labelledby="gameTitle">
+    <div class="game-head">
+      <h2 id="gameTitle">Think you're <em>quick?</em></h2>
+      <p>Hit play, wait for the lights, tap on green.</p>
       <!-- the pill doubles as the F1 light gantry while the game runs -->
       <button class="play-btn" id="playBtn">
         <span class="btn-label" id="btnLabel">Play game</span>
@@ -96,6 +108,17 @@
     </div>
   </section>
 
+  <!-- MOODS: three posters in a row + a one-line statement -->
+  <section class="moods" id="moods" aria-labelledby="moodsTitle">
+    <div class="moods-row">
+      <figure class="reveal"><img src="assets/STFU.png" width="236" height="354" alt="Poster: 'Shut your mouth and eat me', STFU, with caution tape and pixel shades" loading="lazy" /><span class="mood-tag">Mood 01</span></figure>
+      <figure class="reveal"><img src="assets/STFU_1.png" width="236" height="354" alt="Poster: 'Hide it until I found you!', LOW KEY, with a fedora and shades" loading="lazy" /><span class="mood-tag">Mood 02</span></figure>
+      <figure class="reveal"><img src="assets/STFU_3.png" width="236" height="354" alt="Poster: 'Why chase when I'm the catch?', BAD DIES, with devil horns and red lips" loading="lazy" /><span class="mood-tag">Mood 03</span></figure>
+    </div>
+    <h2 id="moodsTitle" class="reveal">Made for main characters,<br />not people pleasers.</h2>
+    <p class="reveal">Three moods, one menu. Smash burgers, ₹69 Iced Americanos and zero apologies, served in Kanpur.</p>
+  </section>
+
   <!-- WHY US (with the looping reel) -->
   <section class="why" id="why">
     <div class="why-copy">
@@ -108,17 +131,17 @@
       </div>
       <a href="menu.html" class="cta">See the menu →</a>
     </div>
-    <!-- the reel is 9:16 with the footage in a 4:3 band; the 4:3 box + object-fit: cover crops the black bars.
-         src is set by script.js when the card nears the viewport (13MB file). -->
+    <!-- the reel is 9:16 with the footage in a ~1:1 band; the 1:1 box + object-fit: cover crops the black bars.
+         src is set by script.js when the card nears the viewport (32MB file). -->
     <figure class="why-video reveal">
-      <video id="reel" data-src="assets/emmanorts_7f68f7aad32f4bcd95a467724c391799.mp4" muted loop playsinline preload="none" aria-label="Burginos campaign reel"></video>
+      <video id="reel" data-src="assets/After_20261015_025536_0000.mp4" muted loop playsinline preload="none" aria-label="Burginos campaign reel"></video>
       <span class="reel-tag"><i></i>Bad decisions · the reel</span>
       <button class="reel-sound" id="reelSound" aria-pressed="false" aria-label="Turn sound on">🔇</button>
     </figure>
   </section>
 
   <footer class="footer">
-    <a href="index.html" class="logo">Burg<span class="i-dot">i</span>nos</a>
+    <a href="index.html" class="logo"><img src="assets/Asset_14.png" width="2987" height="828" alt="Burginos" /></a>
     <p>Kanpur · <a href="https://www.instagram.com/burginos.india/" target="_blank" rel="noopener">@burginos.india</a></p>
     <p class="footer-legal">© <span class="year"></span> Burginos. All rights reserved. All burgers devoured.</p>
   </footer>

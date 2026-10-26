@@ -1,6 +1,7 @@
 /* ============ tokens ============ */
 :root {
   --red: #C20A0E;
+  --red-bright: #E8141C; /* the campaign sticker red */
   --ink: #0E0E0E;
   --white: #FFFFFF;
   --orange: #FBB03B;
@@ -9,7 +10,6 @@
 
   --font-head: "Anton", "Impact", sans-serif;
   --font-body: "Roboto", system-ui, sans-serif;
-  --font-logo: "Damion", cursive;
   --font-nav: "Open Sans", var(--font-body);
 
   --gutter: clamp(16px, 4.5vw, 72px);
@@ -43,25 +43,9 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 ::selection { background: var(--ink); color: var(--white); }
 
 /* ============ logo ============ */
-.logo {
-  font-family: var(--font-logo);
-  font-size: clamp(2rem, calc(var(--vw) * 3.97), 5.4rem);
-  line-height: 1;
-  color: var(--white);
-  text-decoration: none;
-  white-space: nowrap;
-  translate: 0 calc(var(--vw) * -.42); /* Damion's g hangs lower than the mockup's script */
-}
-.i-dot { position: relative; }
-/* paints the orange dot over the i's own dot (offsets measured from Damion's glyph) */
-.i-dot::after {
-  content: "";
-  position: absolute;
-  left: .152em; top: .492em;
-  width: .15em; height: .15em;
-  border-radius: 50%;
-  background: var(--orange);
-}
+/* the brand wordmark PNG (white script, orange dot, transparent background) */
+.logo { display: block; flex-shrink: 0; width: clamp(110px, calc(var(--vw) * 13.2), 290px); }
+.logo img { width: 100%; height: auto; }
 
 /* ============ nav (sized from the mockup: 147px tall at 1536px wide) ============ */
 .nav {
@@ -74,10 +58,14 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 .nav-links { display: flex; align-items: center; }
 .nav-plain {
   margin-right: clamp(.9rem, calc(var(--vw) * 2.51), 3.2rem);
-  font-family: var(--font-nav);
-  font-weight: 700;
-  font-size: clamp(.85rem, calc(var(--vw) * 1.2), 1.6rem);
+  font-family: var(--font-btn);
+  font-weight: 400;
+  font-size: clamp(.95rem, calc(var(--vw) * 1.32), 1.75rem);
+  letter-spacing: .05em;
   text-transform: uppercase;
+  text-shadow: 2px 2px 0 #000; /* same offset shadow as PLAY GAME; black because the nav sits on red */
+  display: inline-block;
+  transition: transform .15s ease;
   text-decoration: none;
   position: relative;
   translate: 0 calc(var(--vw) * .22);
@@ -87,6 +75,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
   content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
   background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s;
 }
+.nav-plain:hover { transform: skewX(-8deg); }
 .nav-plain:hover::after { transform: scaleX(1); }
 
 /* the highlighted MENU pill */
@@ -97,10 +86,12 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
   border-radius: 999px;
   background: #000;
   color: var(--white);
-  font-family: var(--font-nav);
-  font-weight: 700;
-  font-size: clamp(.85rem, calc(var(--vw) * 1.2), 1.6rem);
+  font-family: var(--font-btn);
+  font-weight: 400;
+  font-size: clamp(.95rem, calc(var(--vw) * 1.32), 1.75rem);
+  letter-spacing: .05em;
   text-transform: uppercase;
+  text-shadow: 2px 2px 0 var(--red);
   text-decoration: none;
   transition: transform .15s ease, background .15s ease;
 }
@@ -111,7 +102,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
   opacity: 0;
   animation: menu-ping 2.4s ease-out infinite;
 }
-.nav-menu:hover { transform: translateY(-2px) scale(1.04); }
+.nav-menu:hover { transform: translateY(-2px) scale(1.04) skewX(-6deg); }
 .nav-menu[aria-current="page"] { background: var(--white); color: var(--ink); }
 .nav-menu[aria-current="page"]::before { display: none; }
 @keyframes menu-ping {
@@ -128,48 +119,72 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 .nav-toggle span { width: 16px; height: 2px; background: var(--white); }
 
 /* ============ hero ============ */
+/* solid red nav on top, the party photo fills the rest of the screen */
 .hero {
   position: relative;
   display: flex; flex-direction: column;
   min-height: 100svh;
-  overflow: hidden;
 }
-.hero-center {
-  position: relative; z-index: 2;
+.hero-photo {
+  --pad-l: clamp(16px, calc(var(--vw) * 4.2), 84px);   /* lines up with the logo */
+  --pad-r: clamp(16px, calc(var(--vw) * 4.82), 96px);  /* lines up with MENU */
+  --pad-y: clamp(20px, calc(var(--vw) * 4), 56px);
+  position: relative;
   flex: 1;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: clamp(2rem, calc(var(--vw) * 6.6), 7rem) var(--gutter) 1.5rem; /* sits the headline where the mockup has it */
-  text-align: center;
+  min-height: 420px;
+  overflow: hidden;
+  background: #000;
 }
-/* the "bent" headline: Impact outlines (SVG), each line tilted in perspective so the two
-   lines pinch together in the middle. Fitted to the mockup at 1536px wide; --h scales it. */
-.hero-title { --h: clamp(2.6rem, calc(var(--vw) * 6.582), 12rem); display: flex; flex-direction: column; align-items: center; }
-.t1, .t2 { display: block; width: auto; max-width: none; overflow: visible; }
-.t1 {
-  height: var(--h);
-  fill: #fff;
-  transform-origin: 50% 100%;
-  transform: perspective(calc(var(--h) * 4)) rotateX(-19.29deg) scaleX(.983);
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+/* darkens the bottom so the tagline reads */
+.hero-photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, .55) 100%);
 }
-.t2 {
-  height: calc(var(--h) * 1.337);
-  margin-top: calc(var(--h) * .139);
-  fill: #000;
-  transform-origin: 50% 0;
-  transform: perspective(calc(var(--h) * 4)) rotateX(33.7deg) scaleX(.899);
+.hero-flag {
+  position: absolute; z-index: 2;
+  top: var(--pad-y); left: var(--pad-l);
+  width: clamp(64px, calc(var(--vw) * 8), 120px);
+  fill: rgba(225, 225, 225, .85);
 }
+.hero-tagline {
+  position: absolute; z-index: 2;
+  left: var(--pad-l); bottom: var(--pad-y);
+  font-family: var(--font-head);
+  font-size: clamp(1.35rem, calc(var(--vw) * 2.5), 2.5rem);
+  line-height: 1.12;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .5);
+}
+.hero-tagline em { font-style: normal; color: var(--red-bright); }
+/* the red "Bad decisions taste better." sticker */
+.hero-sticker {
+  position: absolute; z-index: 2;
+  right: var(--pad-r); bottom: var(--pad-y);
+  width: clamp(170px, calc(var(--vw) * 19), 300px);
+  padding: .9em 1em 1em;
+  display: flex; flex-direction: column; gap: .35em;
+  background: var(--red-bright);
+  font-size: clamp(10px, calc(var(--vw) * 1.1), 16px);
+}
+.hero-sticker svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hero-sticker .t1 { width: 92%; margin: 0 auto; fill: #fff; }
+.hero-sticker .t2 { fill: #000; transform: skewX(-10deg); }
 
-.halftone {
-  position: absolute; top: 50%; z-index: 1;
-  width: 160px; height: 380px;
-  background-image: radial-gradient(rgba(255, 255, 255, .4) 2px, transparent 2.6px);
-  background-size: 11px 11px;
-  -webkit-mask-image: radial-gradient(closest-side, #000 20%, transparent);
-          mask-image: radial-gradient(closest-side, #000 20%, transparent);
-  pointer-events: none;
+/* ============ lights-out game ============ */
+.game { background: var(--ink); text-align: center; }
+.game-head {
+  display: flex; flex-direction: column; align-items: center;
+  padding: clamp(2.2rem, 5vw, 3.5rem) var(--gutter) clamp(1rem, 2vw, 1.6rem);
 }
-.halftone-left { left: -90px; transform: translateY(-50%); }
-.halftone-right { right: -90px; transform: translateY(-50%); }
+.game-head h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); text-transform: uppercase; }
+.game-head h2 em { font-style: normal; color: var(--red-bright); }
+.game-head > p:not(.game-msg) { margin-top: .4rem; color: rgba(255, 255, 255, .7); font-size: .95rem; }
+/* red on the dark section; black again while it's the light gantry */
+.game .play-btn { margin-top: 1.4rem; background: var(--red); text-shadow: 2px 2px 0 #000; }
+.game .play-btn.running { background: #000; box-shadow: 0 0 0 2px rgba(255, 255, 255, .2); }
 
 /* PLAY GAME pill; while the game runs it doubles as the light gantry */
 .play-btn {
@@ -211,7 +226,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 .play-btn.running .btn-label { opacity: 0; }
 .play-btn.running .btn-lights { opacity: 1; }
 .play-btn.is-jump { background: var(--orange); color: var(--ink); }
-.game-msg { margin-top: .9rem; min-height: 1.6em; font-size: .95rem; color: rgba(255, 255, 255, .85); }
+.game-msg { margin-top: .9rem; min-height: 1.6em; font-size: .95rem; color: rgba(255, 255, 255, .9); text-shadow: 0 1px 6px rgba(0, 0, 0, .8); }
 .game-msg strong { font-family: var(--font-head); font-weight: 400; font-size: 1.35em; letter-spacing: .02em; color: var(--white); }
 .share-btn {
   margin-top: .4rem;
@@ -222,10 +237,10 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 
 /* track */
 .track { position: relative; z-index: 2; }
-.kerb { height: 16px; background: repeating-linear-gradient(90deg, var(--white) 0 26px, var(--red) 26px 52px); }
+.kerb { height: 10px; background: repeating-linear-gradient(90deg, var(--white) 0 26px, var(--red) 26px 52px); }
 .asphalt {
   position: relative;
-  height: clamp(78px, 10vw, 112px);
+  height: clamp(54px, 5.5vw, 72px);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, .05), transparent 30%),
     var(--asphalt);
@@ -238,19 +253,19 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 }
 .start-line {
   position: absolute; top: 0; bottom: 0;
-  left: calc(5% + clamp(110px, 13vw, 168px));
+  left: calc(5% + clamp(84px, 9vw, 120px));
   width: 14px;
   background: repeating-conic-gradient(var(--white) 0 25%, var(--ink) 0 50%) 0 0 / 14px 14px;
   opacity: .85;
 }
 .car {
   position: absolute; left: 0;
-  width: clamp(110px, 13vw, 168px);
+  width: clamp(84px, 9vw, 120px);
   overflow: visible;
   will-change: transform;
 }
 .car-you { bottom: 4px; z-index: 2; }
-.car-rival { --car-body: #EDEDED; bottom: 48%; z-index: 1; width: clamp(92px, 10.5vw, 136px); display: none; opacity: .92; }
+.car-rival { --car-body: #EDEDED; bottom: 50%; z-index: 1; width: clamp(70px, 7.5vw, 100px); display: none; opacity: .92; }
 body.lab-rival .car-rival { display: block; }
 .car .wheel { transform-box: fill-box; transform-origin: center; }
 .car.speeding .wheel { animation: spin .18s linear infinite; }
@@ -335,6 +350,36 @@ body.lab-rival .car-rival { display: block; }
    so the loop is seamless */
 @keyframes gallery-slide { to { transform: translateX(-50%); } }
 
+/* ============ moods (three posters + statement) ============ */
+.moods {
+  padding: clamp(4.5rem, 10vw, 8rem) var(--gutter);
+  background: #F4F2EE;
+  color: var(--red);
+  text-align: center;
+}
+.moods-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(4px, .5vw, 8px);
+  max-width: 880px; margin: 0 auto;
+}
+.moods-row figure { position: relative; margin: 0; }
+/* 352 not 354: trims the 1px white line at the bottom of STFU.png */
+.moods-row img { width: 100%; height: auto; aspect-ratio: 236 / 352; object-fit: cover; object-position: top; }
+.mood-tag {
+  position: absolute; top: 8px; right: 8px;
+  padding: .15em .5em;
+  background: var(--white); color: var(--ink);
+  font-family: var(--font-nav); font-weight: 700; font-size: .68rem; letter-spacing: .04em; text-transform: uppercase;
+  line-height: 1.5;
+}
+.moods h2 {
+  margin-top: clamp(3.5rem, 8vw, 6.5rem);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  text-transform: uppercase;
+}
+.moods p { max-width: 28rem; margin: .9rem auto 0; font-size: .85rem; line-height: 1.5; }
+.moods-row .reveal:nth-child(2) { transition-delay: .08s; }
+.moods-row .reveal:nth-child(3) { transition-delay: .16s; }
+
 /* ============ why us ============ */
 .why {
   display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center;
@@ -362,7 +407,7 @@ body.lab-rival .car-rival { display: block; }
 /* looping reel */
 .why-video {
   position: relative; margin: 0;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   border-radius: clamp(18px, 2.2vw, 32px);
   overflow: hidden;
   background: #1a1a1a;
@@ -460,6 +505,8 @@ body.lab-scrollCar .scroll-track.show { transform: none; }
 
 /* ============ EXPERIMENTAL: labs panel ============ */
 .labs { position: fixed; right: 14px; bottom: 40px; z-index: 60; font-size: .9rem; }
+.labs.away { opacity: 0; visibility: hidden; }
+.labs { transition: opacity .25s, visibility .25s; }
 .labs-btn {
   padding: .45em 1em;
   border: 2px solid var(--white); border-radius: 999px;
@@ -501,7 +548,6 @@ body.lab-scrollCar .scroll-track.show { transform: none; }
 
 /* ============ responsive ============ */
 @media (max-width: 900px) {
-  .hero-title { --h: 9.2vw; }
   .why { grid-template-columns: 1fr; }
   .about { flex-direction: column; align-items: stretch; padding-bottom: 0; min-height: 0; }
   .about-photo { position: relative; width: auto; height: 78vw; max-height: 560px; margin: 2.5rem calc(var(--gutter) * -1) 0; }
@@ -526,9 +572,10 @@ body.lab-scrollCar .scroll-track.show { transform: none; }
   }
   .nav-links.open .nav-plain { display: block; padding: 1rem var(--gutter); border-bottom: 1px solid #262626; }
   .nav-links.open .nav-menu { margin: 1rem var(--gutter); text-align: center; }
-  .halftone { display: none; }
   .why-grid { grid-template-columns: 1fr; gap: 1.6rem; }
   .gallery-head { flex-direction: column; align-items: flex-start; gap: .8rem; }
+  .hero-sticker { top: var(--pad-y); bottom: auto; width: 150px; } /* no room beside the tagline */
+  .mood-tag { display: none; } /* covers the posters' top lines at this size */
   .labs { bottom: 36px; }
 }
 

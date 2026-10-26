@@ -181,6 +181,7 @@ function engineStop() {
 
 // ============ lights-out game ============
 const hero = $(".hero");
+const gameEl = $("#game");
 const pods = $$("#playBtn .btn-lights i");
 const btnLabel = $("#btnLabel");
 const playBtn = $("#playBtn");
@@ -292,18 +293,18 @@ function act() {
 }
 
 // pointerdown (not click) so reaction times aren't padded by click latency
-hero.addEventListener("pointerdown", (e) => {
-  if (e.target.closest(".nav, .labs, .share-btn")) return;
+gameEl.addEventListener("pointerdown", (e) => {
+  if (e.target.closest(".share-btn")) return;
   if (state === "lighting" || state === "go") { e.preventDefault(); press(); return; }
   if (e.target.closest("#playBtn")) { e.preventDefault(); startRace(); }
 });
 // keyboard / assistive tech activation of the button
 playBtn.addEventListener("click", (e) => { if (e.detail === 0) act(); });
 
-let heroInView = true;
-new IntersectionObserver(([entry]) => { heroInView = entry.isIntersecting; }, { threshold: 0.35 }).observe(hero);
+let gameInView = false;
+new IntersectionObserver(([entry]) => { gameInView = entry.isIntersecting; }, { threshold: 0.35 }).observe(gameEl);
 document.addEventListener("keydown", (e) => {
-  if (e.code !== "Space" || e.repeat || !heroInView) return;
+  if (e.code !== "Space" || e.repeat || !gameInView) return;
   if (document.activeElement === playBtn || e.target.matches("input, textarea")) return;
   e.preventDefault();
   act();
@@ -333,7 +334,9 @@ function onScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
   const p = max > 0 ? Math.min(1, scrollY / max) : 0;
 
-  scrollTrack.classList.toggle("show", scrollY > hero.offsetHeight * 0.6);
+  const pastHero = scrollY > hero.offsetHeight * 0.6;
+  scrollTrack.classList.toggle("show", pastHero);
+  labsEl.classList.toggle("away", !pastHero); // keeps the button off the hero sticker
   scrollCar.style.setProperty("--x", `${p * (scrollTrack.clientWidth - 110)}px`);
 
   if (lab("parallax") && wide.matches) {
