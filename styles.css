@@ -10,7 +10,7 @@
 
   --font-head: "Anton", "Impact", sans-serif;
   --font-body: "Roboto", system-ui, sans-serif;
-  --font-nav: "Open Sans", var(--font-body);
+  --font-nav: "DM Sans", var(--font-body);
 
   --gutter: clamp(16px, 4.5vw, 72px);
   /* header + hero scale with the screen like the 1536px mockup, but stop growing at 1280px
@@ -21,7 +21,7 @@
 
 /* ============ base ============ */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -44,39 +44,34 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 
 /* ============ logo ============ */
 /* the brand wordmark PNG (white script, orange dot, transparent background) */
-.logo { display: block; flex-shrink: 0; width: clamp(110px, calc(var(--vw) * 13.2), 290px); }
+.logo { display: block; flex-shrink: 0; width: clamp(104px, calc(var(--vw) * 11), 240px); }
 .logo img { width: 100%; height: auto; }
 
 /* ============ nav (sized from the mockup: 147px tall at 1536px wide) ============ */
 .nav {
   position: relative; z-index: 20;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  height: clamp(68px, calc(var(--vw) * 9.83), 196px);
-  padding: clamp(4px, calc(var(--vw) * 1.1), 22px) clamp(16px, calc(var(--vw) * 4.82), 96px) 0 clamp(16px, calc(var(--vw) * 4.2), 84px);
+  height: clamp(60px, calc(var(--vw) * 6.4), 120px);
+  padding: 0 clamp(16px, calc(var(--vw) * 4.82), 96px) 0 clamp(16px, calc(var(--vw) * 4.2), 84px);
   border-bottom: clamp(2px, calc(var(--vw) * .26), 5px) solid #CF4F51;
 }
 .nav-links { display: flex; align-items: center; }
 .nav-plain {
   margin-right: clamp(.9rem, calc(var(--vw) * 2.51), 3.2rem);
-  font-family: var(--font-btn);
-  font-weight: 400;
-  font-size: clamp(.95rem, calc(var(--vw) * 1.32), 1.75rem);
-  letter-spacing: .05em;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: clamp(.85rem, calc(var(--vw) * 1.12), 1.4rem);
+  letter-spacing: .06em;
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 #000; /* same offset shadow as PLAY GAME; black because the nav sits on red */
-  display: inline-block;
-  transition: transform .15s ease;
   text-decoration: none;
   position: relative;
-  translate: 0 calc(var(--vw) * .22);
 }
 .nav-plain + .nav-menu { margin-left: calc(clamp(.8rem, calc(var(--vw) * 1.76), 2.2rem) - clamp(.9rem, calc(var(--vw) * 2.51), 3.2rem)); }
 .nav-plain::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
   background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s;
 }
-.nav-plain:hover { transform: skewX(-8deg); }
-.nav-plain:hover::after { transform: scaleX(1); }
+.nav-plain:hover::after, .nav-plain[aria-current="page"]::after { transform: scaleX(1); }
 
 /* the highlighted MENU pill */
 .nav-menu {
@@ -86,12 +81,11 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
   border-radius: 999px;
   background: #000;
   color: var(--white);
-  font-family: var(--font-btn);
-  font-weight: 400;
-  font-size: clamp(.95rem, calc(var(--vw) * 1.32), 1.75rem);
-  letter-spacing: .05em;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: clamp(.85rem, calc(var(--vw) * 1.12), 1.4rem);
+  letter-spacing: .06em;
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 var(--red);
   text-decoration: none;
   transition: transform .15s ease, background .15s ease;
 }
@@ -102,7 +96,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
   opacity: 0;
   animation: menu-ping 2.4s ease-out infinite;
 }
-.nav-menu:hover { transform: translateY(-2px) scale(1.04) skewX(-6deg); }
+.nav-menu:hover { transform: translateY(-2px) scale(1.04); }
 .nav-menu[aria-current="page"] { background: var(--white); color: var(--ink); }
 .nav-menu[aria-current="page"]::before { display: none; }
 @keyframes menu-ping {
@@ -150,7 +144,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 }
 .hero-tagline {
   position: absolute; z-index: 2;
-  left: var(--pad-l); bottom: var(--pad-y);
+  left: var(--pad-l); bottom: calc(var(--pad-y) + 1.6vw);
   font-family: var(--font-head);
   font-size: clamp(1.35rem, calc(var(--vw) * 2.5), 2.5rem);
   line-height: 1.12;
@@ -162,7 +156,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1; }
 /* the red "Bad decisions taste better." sticker */
 .hero-sticker {
   position: absolute; z-index: 2;
-  right: var(--pad-r); bottom: var(--pad-y);
+  right: var(--pad-r); bottom: calc(var(--pad-y) + 1.6vw);
   width: clamp(170px, calc(var(--vw) * 19), 300px);
   padding: .9em 1em 1em;
   display: flex; flex-direction: column; gap: .35em;
@@ -274,6 +268,126 @@ body.lab-rival .car-rival { display: block; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes rev { 50% { transform: translateY(-1px); } }
 
+/* ============ events (home page, above Why us) ============ */
+/* a full-screen photo section (same .hero-photo parts as the hero); overlays laid out from the client's events poster */
+.ev { display: flex; flex-direction: column; min-height: 100svh; }
+/* note, headline and sticker stack in a column so they can't overlap on short screens */
+.ev .hero-photo {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem;
+  padding: var(--pad-y) var(--pad-r) calc(var(--pad-y) + 1.6vw) var(--pad-l);
+}
+.ev .hero-photo > :not(.hero-bg) { position: relative; z-index: 2; }
+.ev .hero-bg img { object-position: 62% 40%; }
+/* darkens the left for the headline and the bottom for the sticker */
+.ev .hero-photo::after {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, .35) 38%, transparent 62%),
+    linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, .45) 100%);
+}
+.ev-note {
+  display: flex; align-items: center; gap: 1.2em;
+  max-width: 30em;
+  font-size: clamp(.68rem, calc(var(--vw) * 1.05), .95rem);
+  font-style: italic; line-height: 1.35; letter-spacing: .02em; text-transform: uppercase;
+  color: rgba(255, 255, 255, .8);
+}
+.ev-note svg { flex: none; width: 4.4em; fill: rgba(225, 225, 225, .85); }
+.ev-title {
+  margin: auto 0; /* centred in the space between the note and the sticker */
+  display: flex; flex-direction: column;
+  line-height: .92;
+  text-transform: uppercase;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, .35);
+}
+/* sized by width and by screen height, so it fits short laptop screens too */
+.ev-l1, .ev-l3 { font-size: clamp(3rem, min(calc(var(--vw) * 10.5), 13svh), 11rem); }
+.ev-l2 { font-size: clamp(2rem, min(calc(var(--vw) * 6.6), 8.2svh), 7rem); }
+.ev-l3 { color: var(--red-bright); }
+/* the little skewed checkered bar under the headline */
+.ev-title::after {
+  content: ""; display: block;
+  width: clamp(90px, calc(var(--vw) * 11), 150px); height: 16px;
+  margin: clamp(1.4rem, calc(var(--vw) * 3.4), 3.6rem) 0 0 10px;
+  background: repeating-conic-gradient(rgba(255, 255, 255, .85) 0 25%, transparent 0 50%) 0 0 / 8px 8px;
+  transform: skewX(-30deg);
+}
+.ev .hero-sticker { inset: auto; width: clamp(150px, calc(var(--vw) * 15), 230px); }
+
+/* ============ reels (under the events photo): rounded 9:16 cards, sliding ============ */
+.reels { padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 4.5rem); background: var(--ink); overflow: hidden; }
+.ribbon + .reels { padding-top: clamp(6rem, 11vw, 9rem); } /* clears the tapes lying across its top */
+.reels + .why { padding-top: clamp(2.5rem, 5vw, 4rem); } /* both dark: one gap, not two */
+.reels-head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem;
+  padding: 0 var(--gutter); margin-bottom: clamp(1.8rem, 3.5vw, 3rem);
+}
+.reels-head h2 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: .95; text-transform: uppercase; }
+.reels-head a { font-weight: 700; text-decoration: none; white-space: nowrap; opacity: .8; transition: opacity .15s; }
+.reels-head a:hover { opacity: 1; }
+.reels-strip { --gap: clamp(14px, 1.6vw, 24px); --card-w: clamp(210px, 19vw, 290px); }
+.reels-track {
+  display: flex; gap: var(--gap); width: max-content;
+  padding-left: var(--gap);
+  animation: gallery-slide var(--dur, 60s) linear infinite;
+}
+.reels-strip:hover .reels-track, .reels-track.held { animation-play-state: paused; }
+.reel { flex: none; display: flex; flex-direction: column; align-items: center; gap: .8rem; }
+.reel-card {
+  position: relative;
+  width: var(--card-w); aspect-ratio: 9 / 16;
+  border-radius: clamp(18px, 2vw, 28px);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+}
+.reel-card video { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* fallback when the video file isn't there. Instagram's embed shows a 54px header, then the reel pillarboxed in a box ~1.19x as tall as the embed is
+   wide, the video itself ~0.67 of that width. Sizing the iframe to card / .66 and lifting the header out of
+   view leaves just the video filling the card. */
+.reel-card iframe {
+  position: absolute; top: -54px; left: 50%;
+  width: calc(var(--card-w) / .66); height: calc(var(--card-w) * 1.9 + 54px);
+  transform: translateX(-50%);
+  border: 0;
+}
+.reel-link {
+  font-family: var(--font-nav); font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, .7);
+  transition: color .15s;
+}
+.reel-link:hover { color: var(--white); }
+.reels-hint { margin-top: 1.4rem; text-align: center; font-size: .85rem; color: rgba(255, 255, 255, .55); }
+
+/* ============ ribbons: two marquee tapes side by side, slanted across a section seam ============ */
+/* zero height: the band lies across the seam over both sections' padding instead of adding space.
+   --shift pushes it down into the next section where the one above has content near its bottom edge. */
+.ribbon { --tape-fs: clamp(.95rem, 1.6vw, 1.35rem); position: relative; z-index: 5; height: 0; }
+/* the band's top edge meets the seam at the left edge on any width (tape height minus the slant's drop there) */
+.ribbon-flush { --shift: calc(2 * var(--tape-fs) + 4px - 1.44vw - 2px); }
+.tape {
+  position: absolute; left: -5%; right: -5%; top: var(--shift, 0px);
+  padding: .5em 0;
+  font-family: var(--font-head);
+  font-size: var(--tape-fs);
+  line-height: 1;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
+  overflow: hidden; /* the track is far wider than the screen */
+  /* same slant on both so they sit flush instead of crossing (crossing sliced the back tape's text);
+     --skew is set by script.js from scroll speed */
+  transform: translateY(var(--ty)) rotate(-1.5deg) skewX(var(--skew, 0deg));
+}
+.tape:first-child { --ty: -100%; }
+.tape:last-child { --ty: 0%; }
+.tape-track { display: flex; width: max-content; will-change: transform; }
+.tape-track span { white-space: pre; }
+.tape-black { background: var(--ink); color: var(--white); border-block: 2px solid rgba(255, 255, 255, .14); }
+.tape-white { background: var(--white); color: var(--red); }
+.tape-red { background: var(--red-bright); color: var(--white); }
+.tape-caution { background: #FFD21F; color: #000; }
+
 /* ============ about ============ */
 .about {
   position: relative;
@@ -283,17 +397,33 @@ body.lab-rival .car-rival { display: block; }
   background: #C5040D; /* matches the photo backdrop */
   overflow: hidden;
 }
-.about-copy { position: relative; z-index: 2; max-width: 36rem; }
-.about-copy h2 { font-size: clamp(3.6rem, 8vw, 7rem); margin-bottom: 1.4rem; }
-.about-copy p {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 1.35vw, 1.18rem);
-  line-height: 1.6;
-  max-width: 34rem;
+.about-copy {
+  position: relative; z-index: 2; max-width: 36rem;
+  /* nudged right on wide screens only (0 below 1100px, where the photo needs the room) */
+  margin-left: clamp(0px, calc((100vw - 1100px) * .25), 7rem);
 }
-.about-copy p + p { margin-top: 1rem; }
+.about-copy h2 { font-size: clamp(3.6rem, 8vw, 7rem); margin-bottom: 1.2rem; }
+/* the story copy uses DM Sans: clean and readable, a step away from the Roboto used elsewhere */
+.about-copy p {
+  font-family: "DM Sans", var(--font-body);
+  font-size: clamp(1.02rem, 1.25vw, 1.14rem);
+  line-height: 1.72;
+  letter-spacing: .005em;
+  color: rgba(255, 255, 255, .94);
+  max-width: 33rem;
+}
+.about-copy p + p { margin-top: 1.15rem; }
+.about-copy .about-lead {
+  margin-bottom: 1.4rem;
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
 .about-copy .about-sign {
   margin-top: 1.8rem;
+  line-height: 1.15;
   font-family: var(--font-head);
   font-size: 1.5rem;
   letter-spacing: .04em;
@@ -311,7 +441,7 @@ body.lab-rival .car-rival { display: block; }
           mask-image: linear-gradient(90deg, transparent 0, #000 14%);
   will-change: transform;
 }
-.flag-mark { position: absolute; top: clamp(2rem, 5vw, 3.5rem); right: var(--gutter); z-index: 3; width: clamp(60px, 7vw, 96px); }
+.flag-mark { position: absolute; top: clamp(5rem, 10vw, 9rem); right: var(--gutter); z-index: 3; width: clamp(60px, 7vw, 96px); }
 .about-kerb {
   position: absolute; left: 0; bottom: 0; z-index: 2;
   width: min(32%, 360px); height: 64px;
@@ -322,6 +452,7 @@ body.lab-rival .car-rival { display: block; }
 /* ============ why us ============ */
 /* ============ gallery (one-row auto-slider, AlienKind-style) ============ */
 .gallery { padding: clamp(4rem, 8vw, 6.5rem) 0; background: #000; overflow: hidden; }
+.ribbon + .gallery { padding-top: clamp(5rem, 10vw, 8.5rem); } /* clears the tapes lying across its top */
 .gallery-head {
   display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem;
   padding: 0 var(--gutter); margin-bottom: clamp(1.8rem, 3.5vw, 3rem);
@@ -414,17 +545,6 @@ body.lab-rival .car-rival { display: block; }
   box-shadow: 0 30px 60px rgba(0, 0, 0, .45);
 }
 .why-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.reel-tag {
-  position: absolute; left: 16px; top: 16px;
-  display: inline-flex; align-items: center; gap: .5em;
-  padding: .35em .85em;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, .55);
-  backdrop-filter: blur(6px);
-  font-family: var(--font-nav); font-weight: 700; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
-}
-.reel-tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 0 rgba(194, 10, 14, .8); animation: rec 1.6s infinite; }
-@keyframes rec { 70% { box-shadow: 0 0 0 8px rgba(194, 10, 14, 0); } 100% { box-shadow: 0 0 0 0 rgba(194, 10, 14, 0); } }
 .reel-sound {
   position: absolute; right: 14px; bottom: 14px;
   width: 44px; height: 44px;
@@ -456,22 +576,50 @@ body.lab-rival .car-rival { display: block; }
 .why-grid .reveal:nth-child(4) { transition-delay: .24s; }
 
 /* ============ menu page ============ */
-.menu-main { padding: clamp(1.5rem, 3vw, 2.2rem) var(--gutter) 3rem; }
-.menu-head { text-align: center; margin-bottom: 1.4rem; }
-.menu-head h1 { font-size: clamp(2.8rem, 6vw, 4.6rem); }
-.menu-head p { margin-top: .3rem; font-size: 1rem; color: rgba(255, 255, 255, .85); }
-.book-wrap { position: relative; max-width: 1080px; min-height: 320px; margin: 0 auto; }
+.menu-main { padding: clamp(1rem, 2vw, 1.6rem) var(--gutter) 3rem; }
+.menu-head { text-align: center; margin-bottom: 1rem; }
+.menu-head h1 { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+/* prev arrow · book · next arrow in a row; on phones the arrows drop below the book */
+/* menu.js sets .book-wrap's width to the book's, so the arrows hug it */
+.book-stage { display: grid; grid-template-columns: auto auto auto; justify-content: center; align-items: center; gap: 24px; }
+.book-wrap { position: relative; width: min(1100px, 80vw); min-height: 320px; }
 .book { margin: 0 auto; filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .35)); }
-.book .page { background: #FFF8F0; overflow: hidden; }
-.book .page canvas { width: 100%; height: 100%; display: block; }
+.book:not(.ready) { visibility: hidden; } /* the pages stack up until page-flip lays them out */
+.book .page { background: #FFF8F0; overflow: hidden; container-type: inline-size; }
+.page-img canvas { display: block; width: 100%; height: 100%; }
+/* covers are HTML, sized in cqw so they scale with the page */
+/* page-flip sets the pages' own display, so the layout lives on an inner box */
+.cover-inner {
+  position: relative; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+}
+.book .page-cover { background: var(--red-bright); }
+.book .page-back { background: var(--ink); }
+.cover-flag { position: absolute; top: 7cqw; left: 7cqw; width: 18cqw; fill: rgba(255, 255, 255, .85); }
+.cover-logo { width: 62cqw; height: auto; }
+.page-back .cover-logo { width: 50cqw; }
+.cover-title {
+  margin-top: 4cqw;
+  font-family: var(--font-head);
+  font-size: 30cqw; line-height: .9;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 1.2cqw 1.2cqw 0 #000;
+}
+.cover-tag { margin-top: 5cqw; font-family: var(--font-head); font-size: 6.4cqw; text-transform: uppercase; letter-spacing: .02em; color: #000; }
+.page-back .cover-tag { color: var(--red-bright); }
+.back-info { margin-top: 3cqw; font-size: 4.2cqw; color: rgba(255, 255, 255, .75); }
+.cover-kerb {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 6cqw;
+  background: repeating-conic-gradient(var(--white) 0 25%, #000 0 50%) 0 0 / 6cqw 6cqw;
+}
 .book-status {
   position: absolute; inset: 0;
   display: grid; place-items: center;
   font-family: var(--font-head); font-size: 1.6rem; letter-spacing: .04em; text-transform: uppercase;
 }
 .book-status a { text-decoration: underline; }
-.book-controls { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 1.8rem; }
-.book-controls[hidden] { display: none; }
 .book-btn {
   width: 48px; height: 48px;
   border: 0; border-radius: 50%;
@@ -481,8 +629,10 @@ body.lab-rival .car-rival { display: block; }
 }
 .book-btn:hover { transform: scale(1.08); }
 .book-btn:disabled { opacity: .35; cursor: default; transform: none; }
-.book-page { min-width: 4.5rem; text-align: center; font-family: var(--font-head); font-size: 1.3rem; letter-spacing: .04em; }
-.book-hint { margin-top: 1rem; text-align: center; font-size: .9rem; color: rgba(255, 255, 255, .8); }
+.book-btn[hidden] { visibility: hidden; display: block; } /* keeps the row's width stable while loading */
+.book-page { margin-right: .6em; font-family: var(--font-head); font-size: 1.05rem; letter-spacing: .04em; }
+.book-page:empty { display: none; }
+.book-hint { margin-top: .8rem; text-align: center; font-size: .9rem; color: rgba(255, 255, 255, .8); }
 
 /* ============ EXPERIMENTAL: scroll-progress car ============ */
 .scroll-track {
@@ -561,7 +711,6 @@ body.lab-scrollCar .scroll-track.show { transform: none; }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .nav { padding-top: 18px; padding-bottom: 16px; }
   .nav-plain { display: none; }
   .nav-links { margin-left: auto; }
   .nav-toggle { display: inline-flex; }
@@ -575,12 +724,20 @@ body.lab-scrollCar .scroll-track.show { transform: none; }
   .why-grid { grid-template-columns: 1fr; gap: 1.6rem; }
   .gallery-head { flex-direction: column; align-items: flex-start; gap: .8rem; }
   .hero-sticker { top: var(--pad-y); bottom: auto; width: 150px; } /* no room beside the tagline */
+  .hero-tagline { bottom: calc(var(--pad-y) + 18px); } /* clears the tapes across the hero's bottom edge */
+  .book-stage { grid-template-columns: 1fr 1fr; grid-template-areas: "book book" "prev next"; justify-content: stretch; row-gap: 1rem; }
+  .book-wrap { grid-area: book; justify-self: center; width: 100%; }
+  .book-prev { grid-area: prev; justify-self: end; }
+  .book-next { grid-area: next; justify-self: start; }
+  .ev .hero-sticker { width: 130px; }
+  .ev-note svg { display: none; }
+  .reels-head { flex-direction: column; align-items: flex-start; gap: .8rem; }
   .mood-tag { display: none; } /* covers the posters' top lines at this size */
   .labs { bottom: 36px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gallery-strip { overflow-x: auto; }
+  .gallery-strip, .reels-strip { overflow-x: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; }

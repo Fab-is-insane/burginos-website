@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Menu · Burginos</title>
-  <meta name="description" content="The Burginos menu: smash burgers, 100% Arabica coffee and snacks. Kanpur." />
+  <meta name="description" content="The Burginos menu: burgers, coffee, fries and snacks. Kanpur." />
   <meta name="theme-color" content="#C2080E" />
   <link rel="icon" href="assets/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;700&family=Racing+Sans+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Racing+Sans+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="menu-page">
@@ -19,6 +19,7 @@
     <nav class="nav-links" id="navLinks">
       <a href="index.html#why" class="nav-plain">Why us</a>
       <a href="index.html#story" class="nav-plain">Our story</a>
+      <a href="index.html#events" class="nav-plain">Events</a>
       <a href="menu.html" class="nav-menu" aria-current="page">Menu</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
@@ -27,20 +28,41 @@
   <main class="menu-main">
     <div class="menu-head">
       <h1>Menu</h1>
-      <p>Flip through. Bad decisions start here.</p>
     </div>
 
-    <div class="book-wrap">
-      <div class="book-status" id="bookStatus">Warming up the tyres…</div>
-      <div class="book" id="book"></div>
-    </div>
+    <!-- arrows sit beside the book on desktop (more height for the book), under it on phones -->
+    <div class="book-stage">
+      <button class="book-btn book-prev" id="prevBtn" aria-label="Previous page" hidden>←</button>
+      <div class="book-wrap">
+        <div class="book-status" id="bookStatus">Warming up the tyres…</div>
+        <!-- four pages: front cover, the one-page PDF spread split down the middle (menu.js renders each half
+             into its page, so the open book shows the spread seamlessly), back cover -->
+        <div class="book" id="book">
+          <div class="page page-cover" data-density="hard">
+            <div class="cover-inner">
+              <svg class="cover-flag" viewBox="0 0 470 235" aria-hidden="true"><path d="M50 0h60l-50 55h-60zM170 0h60l-50 55h-60zM290 0h60l-50 55h-60zM410 0h60l-50 55h-60zM50 60h60l-50 55h-60zM170 60h60l-50 55h-60zM290 60h60l-50 55h-60zM410 60h60l-50 55h-60zM50 120h60l-50 55h-60zM170 120h60l-50 55h-60zM290 120h60l-50 55h-60zM50 180h60l-50 55h-60zM170 180h60l-50 55h-60zM290 180h60l-50 55h-60z"/></svg>
+              <img class="cover-logo" src="assets/Asset_14.png" width="2987" height="828" alt="Burginos" />
+              <p class="cover-title">Menu</p>
+              <p class="cover-tag">Bad decisions taste better.</p>
+              <div class="cover-kerb"></div>
+            </div>
+          </div>
+          <div class="page page-img" id="pageLeft" role="img" aria-label="Menu, left page: Burgers Fest (STFU Burger ₹69, Lowkey Burger ₹95, Baddie Paneer ₹149) and Coffee Bar (Iced Americano ₹69, Temptation Cold Coffee ₹99, Vietnamese Iced Coffee ₹119, Iced Hazelnut Latte ₹129, Intense Iced Mocha ₹149)"></div>
+          <div class="page page-img" id="pageRight" role="img" aria-label="Menu, right page: Hot Coffee Bar (Hot Americano ₹69, Cappuccino ₹89, Spanish Latte ₹109, Intense Hot Mocha ₹129), Fries ₹59/₹109, Kurkure Momos ₹89, Cheese Cigar Roll ₹139, Loaded Fries ₹129, Endless Combo @ ₹99"></div>
+          <div class="page page-back" data-density="hard">
+            <div class="cover-inner">
+              <img class="cover-logo" src="assets/Asset_14.png" width="2987" height="828" alt="" />
+              <p class="cover-tag">Bad decisions taste better.</p>
+              <p class="back-info">Kanpur · @burginos.india</p>
+              <div class="cover-kerb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="book-controls" id="bookControls" hidden>
-      <button class="book-btn" id="prevBtn" aria-label="Previous page">←</button>
-      <span class="book-page" id="bookPage">1 / 1</span>
-      <button class="book-btn" id="nextBtn" aria-label="Next page">→</button>
+      <button class="book-btn book-next" id="nextBtn" aria-label="Next page" hidden>→</button>
     </div>
-    <p class="book-hint">Drag a corner or use the arrows · <a href="assets/menu.pdf" target="_blank" rel="noopener">Open PDF</a></p>
+    <p class="book-hint"><span class="book-page" id="bookPage"></span>Flip through. Bad decisions start here. · <a href="assets/menu/Burginos%20final%20menu.pdf" target="_blank" rel="noopener">Open the full menu (PDF)</a></p>
   </main>
 
   <footer class="footer">

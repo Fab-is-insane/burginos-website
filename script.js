@@ -19,7 +19,7 @@ const CAR_SVG = `
 $$(".car-art").forEach((svg) => (svg.innerHTML = CAR_SVG));
 
 // ============ labs (experimental features for client review) ============
-const SHOW_LABS = true; // false hides the panel; features then use their defaults
+const SHOW_LABS = false; // true shows the panel again; while hidden, features use their defaults
 const LABS = [
   { id: "scrollCar", name: "Scroll-progress car", desc: "A mini F1 car at the bottom of the screen drives as you scroll.", on: true },
   { id: "rival", name: "Race a rival", desc: "A white rival car launches on green. Your car only goes when you tap.", on: false },
